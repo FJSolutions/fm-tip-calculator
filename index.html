@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="icon" type="image/svg+xml" href="/images/favicon-32x32.png"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet">
+  <title>tip-calculator-app-main</title>
+  <script type="module" src="/src/main.ts"></script>
+</head>
+<body>
+<main x-data="tipCalculator" x-cloak>
+  <h1>SPLI<br>TTER</h1>
+  <article>
+    <section class="tip-options">
+      <label for="amount" class="amount-overlay">
+        <span>Bill</span>
+        <input type="number" id="amount" min="0" step="0.01" x-bind:value="getAmount"
+               @change="setAmount">
+        <img src="/images/icon-dollar.svg" alt="total bill">
+      </label>
+      <label for="customTip">Select Tip %</label>
+      <section class="tip-buttons">
+        <button :class="{'active': tipPercent.eq(5)}"
+                @click="() => setTipPercent(5)">5%
+        </button>
+        <button :class="{'active': tipPercent.eq(10)}"
+                @click="() => setTipPercent(10)">10%
+        </button>
+        <button :class="{'active': tipPercent.eq(15)}"
+                @click="() => setTipPercent(15)">15%
+        </button>
+        <button :class="{'active': tipPercent.eq(25)}"
+                @click="() => setTipPercent(25)">25%
+        </button>
+        <button :class="{'active': tipPercent.eq(50)}"
+                @click="() => setTipPercent(50)">50%
+        </button>
+        <button class="custom-tip" x-show="!showCustomTip" @click="showCustomTip = !showCustomTip">
+          Custom
+        </button>
+        <label for="customTip">
+          <input name="customTip" id="customTip" step="0.01" type="number" min="0"
+                 x-show="showCustomTip" :value="tipPercent"
+                 @keydown="escapeCustomAmount" @change="setCustomTip">
+        </label>
+      </section>
+      <label for="noPeople" class="person-overlay">
+        <span>
+          <span>Number of People</span>
+          <span x-show="noPeople <= 0">Can't be zero</span>
+        </span>
+        <input type="number" id="noPeople" name="noPeople" min="1" :value="noPeople"
+               @change="setNoPeople">
+        <img src="/images/icon-person.svg" alt="number of people">
+      </label>
+    </section>
+    <section class="tip-results">
+      <p>
+        <span class="tip-result-label">Tip Amount</span>
+        <span>/ person</span>
+        <span class="tip-result-total" x-text="totalTipPerPerson"></span>
+      </p>
+      <p>
+        <span class="tip-result-label">Total</span>
+        <span>/ person</span>
+        <span class="tip-result-total" x-text="totalPerPerson"></span>
+      </p>
+      <div aria-hidden="true"></div>
+      <button type="button" class="button" @click="resetData">Reset</button>
+    </section>
+  </article>
+</main>
+</body>
+</html>
