@@ -5,8 +5,6 @@ import Decimal from "decimal.js";
 // @ts-ignore
 window.Alpine = Alpine
 
-// Decimal.config({precision: 4, rounding: 4})
-
 export const alpineData = Alpine.reactive({
   amount: new Decimal(0),
   tipPercent: new Decimal(0),

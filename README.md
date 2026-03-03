@@ -11,12 +11,8 @@ This is a solution to the [Tip calculator app challenge on Frontend Mentor](http
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
   - [Continued development](#continued-development)
-  - [Useful resources](#useful-resources)
   - [AI Collaboration](#ai-collaboration)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
-
-**Note: Delete this note and update the table of contents based on what sections you keep.**
 
 ## Overview
 
@@ -32,8 +28,8 @@ This is a solution to the [Tip calculator app challenge on Frontend Mentor](http
 
 ### Links
 
-- Solution URL: 
-- Live Site URL: 
+- Solution URL: https://github.com/FJSolutions/fm-tip-calculator
+- Live Site URL: https://fbj-tip-calculator.netlify.app/
 
 ## My process
 
@@ -49,60 +45,75 @@ This is a solution to the [Tip calculator app challenge on Frontend Mentor](http
 
 ### What I learned
 
-- Should have started TDD
-- Learning `alpine.js`
+This exercise challenged my ability to semantically represent the content of the project without resorting to using display-only elements. 
+I had t rework a couple of things a couple of times to get it as semantic as I eventually settled on. 
+But I'm glad that I started with the markup, otherwise keeping it semantic would have been infinitely more difficult. 
+
+When I saw the project design I immediately decided I was going to use it as an opportunity to try out [Alpine.js](https://alpinejs.dev/).
+This proved to be a valuable choice which had surprising challenges. The basic usage was almost easier than I expected, but when I tried
+to write some tests to validate the data and functional portion of the app I ran into the real challenge! 
+
+Should have started with TDD! That is, after doing the semantic HTML markup, I should have put together the testing environment and moved
+forward from there. After all, this is the heart of TDD. But I didn't, and so I hit a significant learning curve. I had not realised that
+`alpinejs` can only be tested through the frontend and so I would have to learn all about frontend testing libraries as I have only ever 
+done backend testing before. In the end, after writing a few tests, I gave up on a full test suite until I have had a chance to invest in
+learning the basic setup and assertion skills needed for frontend testing.
+
+I sed `span` elements as text dividers where `p` tags violated the HTML spec (ie. inside a `label`). 
+Also, putting the `h1` and an `article` inside the `main` tag was pleasing both semantically and for styling purposes.
 
 ```html
-<h1>Some HTML code I'm proud of</h1>
+<main x-data="tipCalculator" x-cloak>
+  <h1>SPLI<br>TTER</h1>
+  <article>
+    <section class="tip-options">
+      <label for="amount" class="amount-overlay">
+        <span>Bill</span>
+        <input type="number" id="amount" min="0" step="0.01" x-bind:value="getAmount"
+               @change="setAmount">
+        <img src="/images/icon-dollar.svg" alt="total bill" width="10" height="16">
+      </label>
+      ...
 ```
+
+I continue to enjoy the use of `grid-template-areas` for managing responsive layouts. 
+For instance the change between the following two snippets. 
+
 ```css
-.proud-of-this-css {
-  color: papayawhip;
+/* Tablet & bigger screens */
+@media screen and (min-width: 48em) {
+  article {
+    grid-template-areas: "options results";
+    ...
+  }
+}
+
+/* Mobile screens */
+@media screen and (width <= 48em) {
+  article {
+    grid-template-areas: "options" "results";
+    ...
+  }
 }
 ```
+
+Writing the data part of the `alpinejs` in its own file will make testing easier into the future and was easier to setup
+than having too much 'spaghetti code' mised into the `html`.  
+
 ```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
-}
+export const alpineData = Alpine.reactive({
+  ...
+})
 ```
-
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
-
-**Note: Delete this note and the content within this section and replace with your own learnings.**
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
-
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
-
-### Useful resources
-
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
-
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
+Having an intermediate (Tablet portrait) layout would be a good next step.
 
 ### AI Collaboration
 
-Describe how you used AI tools (if any) during this project. This helps demonstrate your ability to work effectively with AI assistants.
-
-- What tools did you use (e.g., ChatGPT, Claude, GitHub Copilot)?
-- How did you use them (e.g., debugging, generating boilerplate, brainstorming solutions)?
-- What worked well? What didn't?
-
-**Note: Delete this note and the content above if you didn't use AI, or replace with your own experience.**
+I only used external AI to verify my design decisions and and answer questions rather than try and have it write code for me. 
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
-
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
-
-## Acknowledgments
-
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
+- Frontend Mentor - [Francis Judge](https://www.frontendmentor.io/profile/FJSolutions)

@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://fbj-tip-calculator.netlify.app/sitemap.xml
