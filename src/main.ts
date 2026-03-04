@@ -27,8 +27,15 @@ export const alpineData = Alpine.reactive({
 
   parseInput: function (e: Event) {
     const input = e.target as HTMLInputElement;
+    const stringValue = input.value;
+    if (!stringValue || stringValue.trim() === "") {
+      return Decimal(0)
+    }
     const no = Number.parseFloat(input.value)
-    // console.log(e.target, no)
+    if(Number.isNaN(no)) {
+      return Decimal(0)
+    }
+    console.log(stringValue, no)
     return new Decimal(no)
   },
 

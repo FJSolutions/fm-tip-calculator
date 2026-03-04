@@ -4,7 +4,8 @@
   <meta charset="UTF-8"/>
   <link rel="icon" type="image/svg+xml" href="/images/favicon-32x32.png"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="This is Francis Judge's implementation of the Frontend Mentor's 'Tip Calculator' project"/>
+  <meta name="description"
+        content="This is Francis Judge's implementation of the Frontend Mentor's 'Tip Calculator' project"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -21,24 +22,30 @@
       <label for="amount" class="amount-overlay">
         <span>Bill</span>
         <input type="number" id="amount" min="0" step="0.01" x-bind:value="getAmount"
+               @focus="(e) => e.target.select(100)"
                @change="setAmount">
         <img src="/images/icon-dollar.svg" alt="total bill" width="10" height="16">
       </label>
       <label for="customTip">Select Tip %</label>
       <section class="tip-buttons">
         <button :class="{'active': tipPercent.eq(5)}"
+                role="radio"
                 @click="() => setTipPercent(5)">5%
         </button>
         <button :class="{'active': tipPercent.eq(10)}"
+                role="radio"
                 @click="() => setTipPercent(10)">10%
         </button>
         <button :class="{'active': tipPercent.eq(15)}"
+                role="radio"
                 @click="() => setTipPercent(15)">15%
         </button>
         <button :class="{'active': tipPercent.eq(25)}"
+                role="radio"
                 @click="() => setTipPercent(25)">25%
         </button>
         <button :class="{'active': tipPercent.eq(50)}"
+                role="radio"
                 @click="() => setTipPercent(50)">50%
         </button>
         <button class="custom-tip" x-show="!showCustomTip" @click="showCustomTip = !showCustomTip">
@@ -46,6 +53,7 @@
         </button>
         <label for="customTip">
           <input name="customTip" id="customTip" step="0.01" type="number" min="0"
+                 @focus="(e) => e.target.select(100)"
                  x-show="showCustomTip" :value="tipPercent"
                  @keydown="escapeCustomAmount" @change="setCustomTip">
         </label>
@@ -55,8 +63,9 @@
           <span>Number of People</span>
           <span x-show="noPeople <= 0">Can't be zero</span>
         </span>
-        <input type="number" id="noPeople" name="noPeople" min="1" :value="noPeople"
-               @change="setNoPeople">
+        <input type="number" id="noPeople" name="noPeople" min="1"
+               @focus="(e) => e.target.select(100)"
+               :value="noPeople" @change="setNoPeople">
         <img src="/images/icon-person.svg" alt="number of people" width="13" height="16">
       </label>
     </section>
