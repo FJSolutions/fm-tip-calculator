@@ -26,26 +26,32 @@
                @change="setAmount">
         <img src="/images/icon-dollar.svg" alt="total bill" width="10" height="16">
       </label>
-      <label for="customTip">Select Tip %</label>
-      <section class="tip-buttons">
+      <p class="tipPercentLabel">Select Tip %</p>
+      <div role="radiogroup" class="tip-buttons" aria-labelledby="tipPercentLabel">
         <button :class="{'active': tipPercent.eq(5)}"
+                aria-label="5%"
                 role="radio"
+                :aria-checked="{tipPercent.eq(5)}"
                 @click="() => setTipPercent(5)">5%
         </button>
         <button :class="{'active': tipPercent.eq(10)}"
                 role="radio"
+                :aria-checked="{tipPercent.eq(10)}"
                 @click="() => setTipPercent(10)">10%
         </button>
         <button :class="{'active': tipPercent.eq(15)}"
                 role="radio"
+                :aria-checked="{tipPercent.eq(15)}"
                 @click="() => setTipPercent(15)">15%
         </button>
         <button :class="{'active': tipPercent.eq(25)}"
                 role="radio"
+                :aria-checked="{tipPercent.eq(25)}"
                 @click="() => setTipPercent(25)">25%
         </button>
         <button :class="{'active': tipPercent.eq(50)}"
                 role="radio"
+                :aria-checked="{tipPercent.eq(50)}"
                 @click="() => setTipPercent(50)">50%
         </button>
         <button class="custom-tip" x-show="!showCustomTip" @click="showCustomTip = !showCustomTip">
@@ -57,7 +63,7 @@
                  x-show="showCustomTip" :value="tipPercent"
                  @keydown="escapeCustomAmount" @change="setCustomTip">
         </label>
-      </section>
+      </div>
       <label for="noPeople" class="person-overlay">
         <span>
           <span>Number of People</span>

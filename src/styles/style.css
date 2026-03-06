@@ -36,8 +36,10 @@ body {
   background-color: var(--grey-200);
 }
 
-label {
+label, p.tipPercentLabel {
   color: var(--grey-500);
+  cursor: default;
+  padding: 0.5rem 0;
 }
 
 main {
@@ -94,7 +96,7 @@ main {
       img {
         position: absolute;
         left: 0.75rem;
-        bottom: 2.4rem;
+        bottom: 0.75rem;
       }
     }
 
@@ -113,7 +115,7 @@ main {
       img {
         position: absolute;
         left: 0.75rem;
-        bottom: 0.3rem;
+        bottom: 0.75rem;
       }
     }
 
@@ -228,7 +230,7 @@ main {
       grid-template-rows: auto 1fr;
 
       .tip-options {
-        section.tip-buttons {
+        .tip-buttons {
           grid-template-columns: 1fr 1fr;
         }
       }
@@ -246,7 +248,7 @@ main {
     }
 
     .tip-options {
-      section.tip-buttons {
+      .tip-buttons {
         grid-template-columns: 1fr 1fr 1fr;
       }
     }
